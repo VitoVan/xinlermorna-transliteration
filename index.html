@@ -21,7 +21,7 @@
          }
          #txt_input, #txt_output {
              width: 24em;
-             height: 5.6em;
+             min-height: 5.6em;
              margin: .2em;
              font-size: 1.2em;
              font-family: 'Jaldi', sans-serif;
@@ -148,7 +148,7 @@
                result += c_x[c_i];
                if (c_l.includes(nxt)) {
                  result += c_joint;
-               }               
+               }
              }
              continue;
            }
@@ -186,6 +186,10 @@
                result += (v_x[cur_lower_v_i] + o_upper);
                continue;
              }
+           }
+           // newline
+           if (cur == '\t' || cur == '\n' || cur == '\r') {
+             result += '<br/>';
            }
            // others
            result += cur;
