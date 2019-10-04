@@ -65,6 +65,17 @@
      button::-moz-focus-inner {
          border: 0;
      }
+     .note {
+         margin-top: 40px;
+         font-size: 12px;
+     }
+     .note p > b {
+         padding: 4px;
+         margin: 4px;
+         background: yellow;
+         border: black 1px solid;
+         border-radius: 4px;
+     }
     </style>
     <title>ख़िंलेर्मोर्ना - xinlermorna transliteration</title>
   </head>
@@ -78,6 +89,23 @@
     <br/>
     <textarea id="txt_input" placeholder="mi prami do i doi le dirba be mi" spellcheck="false" autofocus></textarea>
     <div id="txt_output"></div>
+    <div class="note">
+      <p>xinlermorna Spec:
+        <a href="https://vitovan.com/xinlermorna.html">Webpage</a>
+        /
+        <a href="https://vitovan.com/xinlermorna/xinlermorna-V0.5.pdf">PDF</a>
+      </p>
+      <p style="line-height: 2.4em">
+        Beyond the spec, this tool also transliterate:
+        <b>.i</b> as <b>॰</b>,
+        <b>ni'o</b> as <b>॥</b>,
+        <b>.</b> as <b>˙</b>.
+      </p>
+      <p>
+        Source Code:
+        <a href="https://github.com/VitoVan/xinlermorna-transliteration/">GitHub</a>
+      </p>
+    </div>
     <script>
      // consonant clusters
      const cc_l = ['dj', 'tc', 'dz', 'ts'];
@@ -118,7 +146,7 @@
          btn.className = 'x2l';
          left.innerHTML = 'ख़िंलेर्मोर्ना';
          right.innerHTML = 'Latin';
-         txt_input.placeholder = 'मि प्रामि दो । दोि ले दिर्बा बे मि';
+         txt_input.placeholder = 'मि प्रामि दो ॰ दोि ले दिर्बा बे मि';
          for (let l = cc_l.length, i = 0; i < l; i++) { cc_p[cc_x[i]] = cc_l[i] }
          for (let l = c_l.length, i = 0; i < l; i++) { c_p[c_x[i]] = c_l[i] }
          for (let l = d_l.length, i = 0; i < l; i++) {
