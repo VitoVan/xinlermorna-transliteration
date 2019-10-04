@@ -73,7 +73,7 @@
         <span id="right">ख़िंलेर्मोर्ना</span>
       </div>
       <br/>
-      <textarea id="txt_input" placeholder="mi prami do i doi le dirba be mi" autofocus></textarea>
+      <textarea id="txt_input" placeholder="mi prami do i doi le dirba be mi" spellcheck="false" autofocus></textarea>
       <div id="txt_output"></div>
       <script>
        window.direction = 'l2x';
@@ -105,8 +105,8 @@
        const cc_x = ['ज', 'च', 'ज़', 'च़'];
 
        // consonants
-       const c_l = ['p', 'b', 't', 'd', 'k', 'g', 'f', 'v', 'c', 'j', 's', 'z', 'x', '\'', 'r', 'l', 'm', 'n'];
-       const c_x = ['प', 'ब', 'त', 'द', 'क', 'ग', 'फ़', 'व', 'श', 'झ़', 'स', 'ष', 'ख़', 'ह', 'र', 'ल', 'म', 'न'];
+       const c_l = ['p', 'b', 't', 'd', 'k', 'g', 'f', 'v', 'c', 'j', 's', 'z', 'x', '\'', 'r', 'l', 'm', 'n', 'q', 'w'];
+       const c_x = ['प', 'ब', 'त', 'द', 'क', 'ग', 'फ़', 'व', 'श', 'झ़', 'स', 'ष', 'ख़', 'ह', 'र', 'ल', 'म', 'न', 'क़', 'उ'];
 
        const c_joint = '्';
        const c_n_dot = 'ं';
@@ -126,7 +126,8 @@
          const raw = txt_input.value
                               .replace(/h/g,'\'')
                               .replace(/[\.| ]+i /g,' ॰ ')
-                              .replace(/ni'o/g,'॥');
+                              .replace(/ni'o/g,'॥')
+                              .replace(/\./g, '˙');
          let result = '';
          for (let l = raw.length, i = 0; i < l; i ++) {
            const pre = i > 0 ? raw.charAt(i - 1) : '';
