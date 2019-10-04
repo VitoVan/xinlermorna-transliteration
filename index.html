@@ -107,7 +107,7 @@
         Beyond the spec, this tool also transliterate:
         <b>.i</b> as <b>॰</b>,
         <b>ni'o</b> as <b>॥</b>,
-        <b>.</b> as <b>˙</b>.
+        <b>.</b> as <b>·</b>.
       </p>
       <p>
         Source Code:
@@ -189,7 +189,7 @@
        const raw = txt_input.value
                             .replace(/॰/g,'.i')
                             .replace(/॥/g,'ni\'o')
-                            .replace(/˙/g, '.')
+                            .replace(/·/g, '.')
                             .replace(/्/g, '');
        let result = '';
        for (let l = raw.length, i = 0; i < l; i ++) {
@@ -255,7 +255,7 @@
                             .replace(/h/g,'\'')
                             .replace(/[\.| ]+i /g,' ॰ ')
                             .replace(/ni'o/g,'॥')
-                            .replace(/\./g, '˙');
+                            .replace(/\./g, '·');
        let result = '';
        for (let l = raw.length, i = 0; i < l; i ++) {
          const pre = i > 0 ? raw.charAt(i - 1) : '';
