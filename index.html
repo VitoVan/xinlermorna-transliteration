@@ -20,8 +20,8 @@
     </script>
     <style>
      @font-face {
-         font-family: "Jaldi";
-         src: url("Jaldi-Regular.ttf");
+         font-family: "MarkaziText";
+         src: url("MarkaziText-Regular.ttf");
      }
      body {
          text-align: center;
@@ -34,9 +34,9 @@
          width: 28em;
          min-height: 5.6em;
          margin: .2em;
-         font-size: 1.6em;
+         font-size: 1.8em;
          line-height: 1.8em;
-         font-family: 'xxx', sans-serif;
+         font-family: 'MarkaziText', sans-serif;
          padding: .8em;
          resize: none;
          border-radius: .2em;
@@ -97,12 +97,12 @@
     </div>
     <br/>
     <textarea id="txt_input" placeholder="mi prami do i doi le dirba be mi" spellcheck="false" autofocus></textarea>
-    <div id="txt_output" dir="rtl"></div>
+    <div id="txt_output"></div>
     <div class="note">
-      <p>xinlermorna Spec:
-        <a href="https://vitovan.com/xinlermorna.html">Webpage</a>
+      <p>rablermorna Spec:
+        <a href="https://vitovan.com/rablermorna.html">Webpage</a>
         /
-        <a href="https://vitovan.com/xinlermorna/xinlermorna-V0.5.pdf">PDF</a>
+        <a href="https://vitovan.com/rablermorna/rablermorna-V0.1.pdf">PDF</a>
       </p>
       <p style="line-height: 2.4em">
         Beyond the spec, this tool also transliterate:
@@ -112,46 +112,26 @@
       </p>
       <p>
         Source Code:
-        <a href="https://github.com/VitoVan/xinlermorna-transliteration/">GitHub</a>
+        <a href="https://github.com/VitoVan/rablermorna-transliteration/">GitHub</a>
       </p>
     </div>
     <script>
-     // consonant clusters
-     const cc_l = [];
-     const cc_x = [];
-
      // consonants
      const c_l = ['p', 'b', 't', 'd', 'k', 'g', 'f', 'v', 'c', 'j', 's', 'z', 'x', '\'', 'r', 'l', 'm', 'n', 'q', 'w'];
      const c_x = ['پ', 'ب', 'ت', 'ض', 'ك', 'گ', 'ف', 'و', 'ش', 'ژ', 'س', 'ز', 'خ', 'ه', 'ر', 'ل', 'م', 'ن', 'ق', 'عٌ'];
 
-     const c_joint = '';
-     const c_n_dot = 'ن';
-     const o_upper = '؛';
-
-     // diphthongs
-     const d_l = ['ai', 'ei', 'oi', 'au', 'ia', 'ie', 'ii', 'io', 'iu', 'ua', 'ue', 'ui', 'uo', 'uu', 'iy', 'uy'];
-     // const d_x = ['اًعٍ', 'اِعٍ', 'اُعٍ', 'اًعٌ', 'اٍعً', 'اٍعِ', 'اٍعٍ', 'اٍعُ', 'اٍعٌ', 'اٌعً', 'اٌعِ', 'اٌعٍ', 'اٌعُ', 'اٌعٌ', 'اٍعَ', 'اٌعَ'];
-     const d_x = ['عًعٍ', 'عِعٍ', 'عُعٍ', 'عًعٌ', 'عٍعً', 'عٍعِ', 'عٍعٍ', 'عٍعُ', 'عٍعٌ', 'عٌعً', 'عٌعِ', 'عٌعٍ', 'عٌعُ', 'عٌعٌ', 'عٍعَ', 'عٌعَ'];
-     // const d_x_d = ['اًٍ', 'اٍِ', 'اٍُ', 'اًٌ', 'اًٍ', 'اٍِ', 'اٍٍ', 'اٍُ', 'اٌٍ', 'اًٌ', 'اٌِ', 'اٌٍ', 'اٌُ', 'اٌٌ', 'اٍَ', 'اٌَ'];
-     // const d_x_d = ['عًٍ', 'عٍِ', 'عٍُ', 'عًٌ', 'عًٍ', 'عٍِ', 'عٍٍ', 'عٍُ', 'عٌٍ', 'عًٌ', 'عٌِ', 'عٌٍ', 'عٌُ', 'عٌٌ', 'عٍَ', 'عٌَ'];
-     const d_x_d = ['عًعٍ', 'عِعٍ', 'عُعٍ', 'عًعٌ', 'عٍعً', 'عٍعِ', 'عٍعٍ', 'عٍعُ', 'عٍعٌ', 'عٌعً', 'عٌعِ', 'عٌعٍ', 'عٌعُ', 'عٌعٌ', 'عٍعَ', 'عٌعَ'];
+     const o_upper = 'ː';
 
      // vowels
      const v_l = ['a', 'e', 'i', 'o', 'u', 'y'];
-     // const v_x = ['اً', 'اِ', 'اٍ', 'اُ', 'اٌ', 'اَ'];
-     const v_x = ['عً', 'عِ', 'عٍ', 'عُ', 'عٌ', 'عَ'];
-     const v_x_d = ['ً', 'ِ', 'ٍ', 'ُ', 'ٌ', 'َ'];
-     // const v_x_d = ['', '', '', '', '', ''];
-
-     const v_joint = 'ع';
-     // const v_x_d = ['عً', 'عِ', 'عٍ', 'عُ', 'عٌ', 'عَ'];
-     // const v_x_d = ['اً', 'اِ', 'اٍ', 'اُ', 'اٌ', 'اَ'];
+     const v_x = ['اَ', 'اً', 'اِ', 'اٍ', 'اُ', 'اٌ'];
+     const v_x_d = ['َ', 'ً', 'ِ', 'ٍ', 'ُ', 'ٌ'];
 
      window.direction = 'l2x';
      const txt_input = document.getElementById('txt_input');
      const txt_output = document.getElementById('txt_output');
 
-     let cc_p, c_p, d_p, d_d_p, v_p, v_d_p;
+     let c_p, v_p, v_d_p;
 
      const swap = (current_mode) => {
        cc_p = {}, c_p = {}, d_p = {}, d_d_p = {}, v_p = {}, v_d_p = {};
@@ -162,15 +142,13 @@
        if (window.direction === 'l2x') {
          window.direction = 'x2l';
          btn.className = 'x2l';
-         left.innerHTML = 'ख़िंलेर्मोर्ना';
+         left.innerHTML = 'ربلرمرن ';
          right.innerHTML = 'Latin';
-         txt_input.placeholder = 'मि प्रामि दो ॰ दोि ले दिर्बा बे मि';
-         for (let l = cc_l.length, i = 0; i < l; i++) { cc_p[cc_x[i]] = cc_l[i] }
+         txt_input.placeholder = 'مِ پرم ضٍ إ ضٍاِ لً ضرب بً مِ ';
+         txt_input.dir = 'rtl';
+         txt_output.dir = 'ltr';
+         txt_output.style.textAlign = 'left';
          for (let l = c_l.length, i = 0; i < l; i++) { c_p[c_x[i]] = c_l[i] }
-         for (let l = d_l.length, i = 0; i < l; i++) {
-           d_p[d_x[i]] = d_l[i];
-           d_d_p[d_x_d[i]] = d_l[i]
-         }
          for (let l = v_l.length, i = 0; i < l; i++) {
            v_p[v_x[i]] = v_l[i];
            v_d_p[v_x_d[i]] = v_l[i];
@@ -179,14 +157,12 @@
          window.direction = 'l2x';
          btn.className = '';
          left.innerHTML = 'Latin';
-         right.innerHTML = 'ख़िंलेर्मोर्ना';
+         right.innerHTML = 'ربلرمرن ';
          txt_input.placeholder = 'mi prami do i doi le dirba be mi';
-         for (let l = cc_l.length, i = 0; i < l; i++) { cc_p[cc_l[i]] = cc_x[i] }
+         txt_input.dir = 'ltr';
+         txt_output.dir = 'rtl';
+         txt_output.style.textAlign = 'right';
          for (let l = c_l.length, i = 0; i < l; i++) { c_p[c_l[i]] = c_x[i] }
-         for (let l = d_l.length, i = 0; i < l; i++) {
-           d_p[d_l[i]] = d_x[i];
-           d_d_p[d_l[i]] = d_x_d[i];
-         }
          for (let l = v_l.length, i = 0; i < l; i++) {
            v_p[v_l[i]] = v_x[i];
            v_d_p[v_l[i]] = v_x_d[i];
@@ -195,152 +171,65 @@
        txt_input.focus();
      };
 
-     const fn_x2l = () => {
-       const raw = txt_input.value
-                            .replace(/॰/g,'.i')
-                            .replace(/॥/g,'ni\'o')
-                            .replace(/·/g, '.')
-                            .replace(/्/g, '');
-       let result = '';
-       for (let l = raw.length, i = 0; i < l; i ++) {
-         const pre = i > 0 ? raw.charAt(i - 1) : '';
-         const cur = raw.charAt(i);
-         const nxt = (i + 1) < l ? raw.charAt(i + 1) : '';
-         // consonant clusters
-         const cc_r = cc_p[cur];
-         if (cc_r) {
-           result += cc_r;
-           continue;
-         }
-         // consonants
-         const c_r = c_p[cur];
-         if (c_r) {
-           result += c_r;
-           continue;
-         }
-         const c_r_2 = c_p[cur + nxt];
-         if (c_r_2) {
-           result += c_r_2;
-           i ++;
-           continue;
-         }
-         // diphthongs
-         const d_r = d_p[cur] || d_d_p[cur];
-         if (d_r) {
-           result += d_r;
-           continue;
-         }
-         const d_r_2 =  d_p[cur + nxt] || d_d_p[cur + nxt];
-         if (d_r_2) {
-           result += d_r_2;
-           i ++;
-           continue;
-         }
-         // vowels
-         const v_r = v_p[cur] || v_d_p[cur];
-         if (v_r) {
-           result += v_r;
-           continue;
-         }
-         if (cur === c_n_dot) {
-           result += 'n';
-           continue;
-         }
-         if (cur === o_upper) {
-           result[i - 1] = result[i - 1].toUpperCase();
-           continue;
-         }
-         // newline
-         if (cur == '\t' || cur == '\n' || cur == '\r') {
-           result += '<br/>';
-         }
-         // others
-         result += cur;
-       }
-       txt_output.innerHTML = result;
-     };
-
      const fn_l2x = () => {
        const raw = txt_input.value
                             .replace(/h/g,'\'')
-                            // .replace(/[\.| ]+i /g,' ا ')
-                            // .replace(/ni'o/g,'؛؛')
-                            .replace(/\./g, '·');
+                            .replace(/[\.| ]+i /g,' إ ')
+                            .replace(/ni'o/g,'ئ')
+                            .replace(/ +/g,' ')
+                            .replace(/\n|\r|\t/g,' <br/> ');
        let result = '';
-       for (let l = raw.length, i = 0; i < l; i ++) {
-         const ppre = i > 1 ? raw.charAt(i - 2) : '';
-         const pre = i > 0 ? raw.charAt(i - 1) : '';
-         const cur = raw.charAt(i);
-         const nxt = (i + 1) < l ? raw.charAt(i + 1) : '';
-         // consonant clusters
-         const cc_r = cc_p[cur + nxt];
-         if (cc_r) {
-           result += cc_r;
-           i ++;
+       for (let word of raw.split(' ')) {
+         if (word.includes('<br/>')) {
+           result += word;
            continue;
+         };
+         let voiced = false;
+         if (window.voiced) {
+           voiced = true;
+         } else if (word.match(/^[^aeiouy]?[aeiouy']*\s*$/) || word.includes('.')) {
+           voiced = true;
          }
-         // consonants
-         const c_r = c_p[cur];
-         if (c_r) {
-           if (cur === 'n' && !v_p[nxt] && v_p[pre]) {
-             result += c_n_dot;
-           } else {
+         word = word.replace(/\./g, 'ء') + ' ';
+         for (let l = word.length, i = 0; i < l; i ++) {
+           const pre = i > 0 ? word.charAt(i - 1) : '';
+           const cur = word.charAt(i);
+           const nxt = (i + 1) < l ? word.charAt(i + 1) : '';
+           // consonants
+           const c_r = c_p[cur];
+           if (c_r) {
              result += c_r;
-             if (c_p[nxt]) {
-               result += c_joint;
-             }
-           }
-           continue;
-         }
-         // diphthongs
-         const d_r = d_p[cur + nxt];
-         if (d_r) {
-           if (c_p[pre]) {
-             result += d_d_p[cur + nxt];
-           } else {
-             result += d_r;
-           }
-           i ++;
-           continue;
-         }
-         // vowels
-         const v_r = v_p[cur];
-         if (v_r) {
-           if (c_p[pre]) {
-             // if (c_p[nxt]) {
-             // result += v_joint;
-             // }
-             if (
-               (pre === '\'' || nxt === '\'') ||
-               ((ppre === ' ' || ppre === '') && (nxt === ' ' || nxt === ''))
-             ) {
-               result += v_d_p[cur];
-             }
-           } else {
-             result += v_r;
-           }
-           continue;
-         }
-         // Upper Case
-         if (/[A-Z]/.test(cur)) {
-           const cur_lower = cur.toLowerCase();
-           const cur_lower_c_r = c_p[cur_lower];
-           if (cur_lower_c_r) {
-             result += (cur_lower_c_r + o_upper);
              continue;
            }
-           const cur_lower_v_r = v_d[cur_lower];
-           if (cur_lower_v_r) {
-             result += (cur_lower_v_r + o_upper);
+           // vowels
+           const v_r = v_p[cur];
+           if (v_r) {
+             if (c_p[pre]) {
+               if (voiced) {
+                 result += v_d_p[cur];
+               }
+             } else {
+               result += v_r;
+             }
              continue;
            }
+           // Upper Case
+           if (/[A-Z]/.test(cur)) {
+             const cur_lower = cur.toLowerCase();
+             const cur_lower_c_r = c_p[cur_lower];
+             if (cur_lower_c_r) {
+               result += (cur_lower_c_r + o_upper);
+               continue;
+             }
+             const cur_lower_v_r = v_d[cur_lower];
+             if (cur_lower_v_r) {
+               result += (cur_lower_v_r + o_upper);
+               continue;
+             }
+           }
+           // others
+           result += cur;
          }
-         // newline
-         if (cur == '\t' || cur == '\n' || cur == '\r') {
-           result += '<br/>';
-         }
-         // others
-         result += cur;
        }
        txt_output.innerHTML = result;
      };
