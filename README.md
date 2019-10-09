@@ -9,7 +9,7 @@ Devanagari Orthography for Lojban based on Hindi pronunciation
     
 - PDF:
 
-    https://vitovan.com/xinlermorna/xinlermorna-V0.5.pdf
+    https://vitovan.com/xinlermorna/xinlermorna-V0.6.pdf
 
 ## Transliteration
 
