@@ -156,7 +156,10 @@
          right.innerHTML = 'Latin';
          txt_input.placeholder = 'मि प्रामि दो ॰ दोि ले दिर्बा बे मि';
          for (let l = cc_l.length, i = 0; i < l; i++) { cc_p[cc_x[i]] = cc_l[i] }
-         for (let l = c_l.length, i = 0; i < l; i++) { c_p[c_x[i]] = c_l[i] }
+         for (let l = c_l.length, i = 0; i < l; i++) {
+           if (c_l[i] === 'w') continue;
+           c_p[c_x[i]] = c_l[i];
+         }
          for (let l = d_l.length, i = 0; i < l; i++) {
            d_p[d_x[i]] = d_l[i];
            d_d_p[d_x_d[i]] = d_l[i]
@@ -203,15 +206,15 @@
            continue;
          }
          // consonants
-         const c_r = c_p[cur];
-         if (c_r) {
-           result += c_r;
-           continue;
-         }
          const c_r_2 = c_p[cur + nxt];
          if (c_r_2) {
            result += c_r_2;
            i ++;
+           continue;
+         }
+         const c_r = c_p[cur];
+         if (c_r) {
+           result += c_r;
            continue;
          }
          // diphthongs
