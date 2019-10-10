@@ -254,11 +254,14 @@
      };
 
      const fn_l2x = () => {
-       const raw = txt_input.value
-                            .replace(/h/g,'\'')
-                            .replace(/[\.| ]+i /g,' ॰ ')
-                            .replace(/ni'o/g,'॥')
-                            .replace(/\./g, '·');
+       const raw = (' ' + txt_input.value + ' ')
+         .replace(/h/g,'\'')
+         .replace(/[\.| ]+i /g,' ॰ ')
+         .replace(/[\.| ]+i /g,' ॰ ')
+         .replace(/(\W)(ni'o)(\W)/g,'$1॥$3')
+         .replace(/(\W)(ni'o)(\W)/g,'$1॥$3')
+         .replace(/\./g, '·')
+         .trim();
        let result = '';
        for (let l = raw.length, i = 0; i < l; i ++) {
          const pre = i > 0 ? raw.charAt(i - 1) : '';
