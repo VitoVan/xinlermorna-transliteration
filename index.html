@@ -107,6 +107,8 @@
         Beyond the spec, this tool also transliterate:
         <b>.i</b> as <b>॰</b>,
         <b>ni'o</b> as <b>॥</b>,
+        <b>lu</b> as <b><</b>,
+        <b>li'u</b> as <b>></b>,
         <b>.</b> as <b>·</b>.
       </p>
       <p>
@@ -260,6 +262,8 @@
          .replace(/[\.| ]+i /g,' ॰ ')
          .replace(/(\W)(ni'o)(\W)/g,'$1॥$3')
          .replace(/(\W)(ni'o)(\W)/g,'$1॥$3')
+         .replace(/(\W)(lu)(\W)/g,'$1<$3')
+         .replace(/(\W)(li'u)(\W)/g,'$1>$3')
          .replace(/\./g, '·')
          .trim();
        let result = '';
